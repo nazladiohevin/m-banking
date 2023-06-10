@@ -17,8 +17,6 @@ Arti setiap class:
 ### Perhatian!!!
 Untuk setiap class memiliki file header yang ber-extensi **.h**. Misal kan untuk file Login.cpp memiliki file header yaitu Login.h. Dimana setiap class memiliki template-nya yang disimpan di file **.h**
 
-Misal kan untuk file Login.cpp memiliki file header yaitu Login.h.
-
 Menjalankan semua program di file **Main.cpp**.
 
 JANGAN LUPA INCLUDE FILE .h di Main ketika mau ambil class lain.
