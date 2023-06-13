@@ -4,8 +4,6 @@ Command line-based mobile-banking application (CLI) use C++
 ## DESCRIPTION
 Arti setiap class:
 - **Main.cpp** -> Menu utama
-- **Login.cpp** -> Login
-- **Register.cpp** -> Pendaftaran
 - **BalanceCheck.cpp** -> Cek Saldo
 - **CashWithdrawal.cpp** -> Tarik Tunai
 - **Transfer.cpp** -> Transfer

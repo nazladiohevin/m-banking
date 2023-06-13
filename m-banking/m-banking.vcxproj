@@ -127,26 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
     <ClCompile Include="BalanceCheck.cpp" />
     <ClCompile Include="CashWithdrawal.cpp" />
     <ClCompile Include="CreditData.cpp" />
     <ClCompile Include="DigitalWallet.cpp" />
     <ClCompile Include="Electricity.cpp" />
-    <ClCompile Include="Login.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mutation.cpp" />
-    <ClCompile Include="Register.cpp" />
-    <ClCompile Include="Transfer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
     <ClInclude Include="BalanceCheck.h" />
     <ClInclude Include="CashWithdrawal.h" />
     <ClInclude Include="CreditData.h" />
     <ClInclude Include="DigitalWallet.h" />
     <ClInclude Include="Electricity.h" />
-    <ClInclude Include="Login.h" />
     <ClInclude Include="Mutation.h" />
-    <ClInclude Include="Register.h" />
     <ClInclude Include="Transfer.h" />
   </ItemGroup>
   <ItemGroup>
