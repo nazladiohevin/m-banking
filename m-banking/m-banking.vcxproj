@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,6 +134,7 @@
     <ClCompile Include="CreditData.cpp" />
     <ClCompile Include="DigitalWallet.cpp" />
     <ClCompile Include="Electricity.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mutation.cpp" />
   </ItemGroup>
@@ -143,6 +145,7 @@
     <ClInclude Include="CreditData.h" />
     <ClInclude Include="DigitalWallet.h" />
     <ClInclude Include="Electricity.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="Mutation.h" />
     <ClInclude Include="Transfer.h" />
   </ItemGroup>
