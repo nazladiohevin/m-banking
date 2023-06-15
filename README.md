@@ -12,6 +12,11 @@ Arti setiap class:
 - **Electricity.cpp** -> Listrik
 - **Mutation.cpp** -> Mutasi rekening
 
+- Helper Class berfungsi untuk media pembantu untuk class-class lain. Dimana didalamnya class tersebut
+terdapat function-function yang berguna untuk project dan berlaku secara global. Yang artinya bisa diakses di class Manapun. **Dengan catatan**: harus menyertakan **#include "file headernya"** di class yang menggunakannya.
+Untuk menambahkan function baru harus pake keyword **static** ya guys. Untuk mengakses function nya tinggal pake kek gini
+namaClass::NamaFunction(parameter, parameter...);
+
 ### Perhatian!!!
 Untuk setiap class memiliki file header yang ber-extensi **.h**. Misal kan untuk file Login.cpp memiliki file header yaitu Login.h. Dimana setiap class memiliki template-nya yang disimpan di file **.h**
 
