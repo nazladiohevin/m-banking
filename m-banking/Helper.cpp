@@ -3,6 +3,8 @@
 #include <string>
 #include <conio.h>
 #include <regex>
+#include <sstream>
+#include <iomanip>
 
 // #include "curl/curl.h"
 
@@ -48,6 +50,15 @@ bool Helper::isSequence(string& input) {
 bool Helper::validateEmail(string& email) {
     regex emailRegex(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
     return regex_match(email, emailRegex);
+}
+
+string Helper::convertToRupiah(double amount) {
+    ostringstream oss;
+    oss.imbue(locale(""));
+
+    oss << "Rp " << fixed << setprecision(2) << showpoint << amount;
+
+    return oss.str();
 }
 
 //void Helper::sendEmail(string to, string from, string subject, string content) {
