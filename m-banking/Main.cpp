@@ -22,12 +22,17 @@ struct ActionUser
     int userChoosen;
 };
 
+struct UserData {
+    string name, username, pin, password, email;
+    double money;   
+};
+
 int main() {
     ActionUser user;
 
     vector<Account> accounts = {
-        Account::Account("Farrel Rashendriya", "farrelakbar", "farrelakbar@gmail.com", "20041234", "123456", "62300097645"),
-        Account::Account("Reza Kecap", "kecapmanis", "rezamanis@gmail.com", "20035678", "987654", "62300076587"),
+        Account::Account("Farrel Rashendriya", "farrelakbar", "farrelakbar@gmail.com", "20041234", "123456", "62300097645", 200000),
+        Account::Account("Reza Kecap", "kecapmanis", "rezamanis@gmail.com", "20035678", "987654", "62300076587", 300000),
     };
 
     do {
@@ -42,6 +47,8 @@ int main() {
         // User choose
         cout << "Pilih: ";
         cin >> user.userChoosen;
+
+        system("cls");
 
         if (user.userChoosen == 0) {
             break;
@@ -89,10 +96,15 @@ int main() {
                     cout << "5. PLN" << endl;
                     cout << "6. Mutasi Rekening" << endl;
                     cout << "7. Cek Saldo" << endl;
+                    cout << "8. Profile" << endl;
                     cout << "0. Exit" << endl;
 
                     cout << "Pilih : ";
                     cin >> loggedUser.userChoosen;
+
+                    cout << "\nTunggu sebentar...";
+                    this_thread::sleep_for(chrono::milliseconds(2000));                                        
+                    system("cls");
 
                     if (loggedUser.userChoosen == 0) {
                         isExit = false;
@@ -119,12 +131,15 @@ int main() {
                     else if (loggedUser.userChoosen == 7) {
                         // Type here for Cek Saldo
                     }
+                    else if (loggedUser.userChoosen == 8) {
+                        // Type here for Profile
+                        Account::showProfile(*login);
+                    }
                     else {
                         cout << "\nPilih menu yang telah disediakan!" << endl;
                     }
-                    
-                    system("pause");
-                    system("cls");
+                                       
+                    system("pause");                    
                 } while (isExit);
             }
             else {
@@ -132,9 +147,8 @@ int main() {
                 cout << "Gagal Login";
             }
         } else if (user.userChoosen == 2) {
-            string name, username, pin, password, email;
+            UserData user;
             vector<string> messages;
-
             bool isOk;
             
             do {
@@ -147,59 +161,66 @@ int main() {
                 cout << "--" << endl;
                 cout << "Masukkan input berikut:" << endl;
 
-                cout << "Nama\t\t: ";
+                cout << "Nama\t\t\t\t: ";
                 cin.ignore();
-                getline(cin, name);
+                getline(cin, user.name);
 
-                cout << "Username\t: ";
-                getline(cin, username);               
+                cout << "Username\t\t\t: ";
+                getline(cin, user.username);               
 
-                cout << "Email\t\t: ";
-                getline(cin, email);
+                cout << "Email\t\t\t\t: ";
+                getline(cin, user.email);
 
-                cout << "Password\t: ";
-                password = Helper::inputBullet();
+                cout << "Password\t\t\t: ";
+                user.password = Helper::inputBullet();
 
-                cout << "Pin\t\t: ";
-                getline(cin, pin);
+                cout << "Pin\t\t\t\t: ";
+                getline(cin, user.pin);
+
+                cout << "Setoran awal (Min: Rp 500.000)\t: ";
+                cin >> user.money;
 
 
                 // VALIDASI
                 // Nama
-                if (name.length() < 3) {
+                if (user.name.length() < 3) {
                     messages.push_back("Nama setidaknya 3 karakter");                    
                     isOk = false;
                 }
 
                 // Username
-                if (username.length() < 3) {
+                if (user.username.length() < 3) {
                     messages.push_back("Username setidaknya 3 karakter");                    
                     isOk = false;
                 }
                 for (int i = 0;i < accounts.size(); i++) {
-                    if (username == accounts.at(i).username) {
-                        messages.push_back("Username \"" + username + "\" sudah dipakai");
+                    if (user.username == accounts.at(i).username) {
+                        messages.push_back("Username \"" + user.username + "\" sudah dipakai");
                         isOk = false;
                         break;
                     }
                 }
 
                 // Email
-                if (!Helper::validateEmail(email)) {
+                if (!Helper::validateEmail(user.email)) {
                     messages.push_back("Format email salah");                    
                     isOk = false;
                 }
 
                 // Password
-                if (password.length() < 8) {
+                if (user.password.length() < 8) {
                     messages.push_back("Password setidaknya harus 8 karakter");                    
                     isOk = false;
                 }
 
                 // Pin
-                if (pin.length() != 6) {
+                if (user.pin.length() != 6) {
                     messages.push_back("Pin harus 6 digit");                                        
                     isOk = false;                    
+                }
+
+                if (user.money < 500000) {
+                    messages.push_back("Setoran minimal Rp 500.000");
                 }
                 /*if (!Helper::isSequence(password)) {
                      cout << "Pin tak boleh berurutan" << endl;
@@ -227,7 +248,8 @@ int main() {
             } while (!isOk);            
 
             
-            accounts.push_back(Account::registerAccount(name, username, email, password, pin)); 
+            accounts.push_back(Account::registerAccount(user.name, user.username, user.email,
+                user.password, user.pin, user.money)); 
 
             cout << endl << "Berhasil membuat akun" << endl;
             cout << "Mohon tunggu sebentar...";

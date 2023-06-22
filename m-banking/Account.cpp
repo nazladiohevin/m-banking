@@ -8,13 +8,14 @@
 
 using namespace std;
 
-Account::Account(string name, string username, string email, string password, string pin, string idAccount) {
+Account::Account(string name, string username, string email, string password, string pin, string idAccount, double money) {
 	this->name = name;
 	this->username = username;
 	this->email = email;
 	this->password = password;
 	this->pin = pin;
 	this->idAccount = idAccount;
+	this->money = money;
 }
 
 Account* Account::login(string username, string password, vector<Account>& accounts) {
@@ -40,7 +41,7 @@ Account* Account::login(string username, string password, vector<Account>& accou
 	}
 }
 
-Account Account::registerAccount(string name, string username, string email, string password, string pin) {
+Account Account::registerAccount(string name, string username, string email, string password, string pin, double money) {
 	string idAccount;
 	
 	// Buat angka random
@@ -52,5 +53,20 @@ Account Account::registerAccount(string name, string username, string email, str
 
 	cout << "No Rekening (Dibuat otomatis) : " << idAccount << endl;
 	
-	return Account(name, username, email, password, pin, idAccount);	
+	return Account(name, username, email, password, pin, idAccount, money);	
+}
+
+void Account::showProfile(Account& account) {
+	cout << "BANK AMIKOM" << endl;
+	cout << "===========" << endl;
+
+	cout << "Profile" << endl;
+	cout << "--" << endl;	
+	cout << "\nNama\t : " << account.name;
+	cout << "\nUsername : " << account.username;
+	cout << "\nEmail\t : " << account.email;
+	cout << "\nRekening : " << account.idAccount;
+	cout << "\nSaldo\t : " << Helper::convertToRupiah(account.money);
+	
+	cout << "\n\n";
 }
