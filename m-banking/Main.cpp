@@ -13,6 +13,8 @@
 // IMPORT CLASS
 #include "Account.h"
 #include "Helper.h"
+#include "BalanceCheck.h"
+#include "CashWithdrawal.h"
 
 
 using namespace std;
@@ -31,8 +33,24 @@ int main() {
     ActionUser user;
 
     vector<Account> accounts = {
-        Account::Account("Farrel Rashendriya", "farrelakbar", "farrelakbar@gmail.com", "20041234", "123456", "62300097645", 200000),
-        Account::Account("Reza Kecap", "kecapmanis", "rezamanis@gmail.com", "20035678", "987654", "62300076587", 300000),
+        Account::Account(
+            "Farrel Rashendriya", 
+            "farrelakbar", 
+            "farrelakbar@gmail.com", 
+            "20041234", 
+            "123456", 
+            "62300097645", 
+            200000
+        ),
+        Account::Account(
+            "Reza Kecap",
+            "kecapmanis",
+            "rezamanis@gmail.com",
+            "20035678",
+            "987654",
+            "62300076587",
+            300000
+        ),
     };
 
     do {
@@ -77,9 +95,10 @@ int main() {
             if (login != nullptr) {
                 // LOGIN SUCCESS               
                 system("cls");
-                bool isExit = false;
+                bool isExit = true;
                 
                 do {
+                    system("cls");
                     // Type Code Here after login success
                     ActionUser loggedUser;
 
@@ -111,7 +130,8 @@ int main() {
                         cout << "Proses Logout..." << endl;
                     }
                     else if (loggedUser.userChoosen == 1) {
-                        // Type here for Tarik Tunai
+                        // Type here for Tarik Tunai   
+                        CashWithdrawal::process(*login);
                     }
                     else if (loggedUser.userChoosen == 2) {
                         // Type here for Transfer
@@ -129,7 +149,8 @@ int main() {
                         // Type here for Mutasi Rekening
                     }
                     else if (loggedUser.userChoosen == 7) {
-                        // Type here for Cek Saldo
+                        // Farrel OK
+                        BalanceCheck::print(*login);
                     }
                     else if (loggedUser.userChoosen == 8) {
                         // Type here for Profile
@@ -248,8 +269,14 @@ int main() {
             } while (!isOk);            
 
             
-            accounts.push_back(Account::registerAccount(user.name, user.username, user.email,
-                user.password, user.pin, user.money)); 
+            accounts.push_back(Account::registerAccount(
+                user.name, 
+                user.username, 
+                user.email,
+                user.password, 
+                user.pin, 
+                user.money
+            )); 
 
             cout << endl << "Berhasil membuat akun" << endl;
             cout << "Mohon tunggu sebentar...";
@@ -259,7 +286,7 @@ int main() {
             cout << "Pilih menu yang disediakan!" << endl;
         }
         
-        // Refresh CMD with delay 3000 miliseconds
+        // Refresh CMD with delay 3000 miliseconds        
         this_thread::sleep_for(chrono::milliseconds(3000));
         system("cls");
     } while (user.userChoosen != 0);
