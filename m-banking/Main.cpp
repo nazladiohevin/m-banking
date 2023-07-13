@@ -1,12 +1,10 @@
 #include <iostream>
-#include <string> // Buat tipe data string dan manipulasi string
-
-#include <chrono> // Untuk menggunakan tipe data waktu
-#include <thread> // untuk menggunakan fungsi sleep_for()
-
+#include <string>
+#include <chrono>
+#include <thread>
 #include <random>
-
 #include <vector>
+#include <stack>
 #include <conio.h>
 
 
@@ -15,6 +13,10 @@
 #include "Helper.h"
 #include "BalanceCheck.h"
 #include "CashWithdrawal.h"
+#include "Mutation.h"
+#include "Transfer.h"
+#include "DigitalWallet.h"
+#include "Electricity.h"
 
 
 using namespace std;
@@ -40,26 +42,35 @@ int main() {
             "20041234", 
             "123456", 
             "62300097645", 
-            200000
+            1500000
         ),
         Account::Account(
-            "Reza Kecap",
+            "Reza Kecap Manis",
             "kecapmanis",
             "rezamanis@gmail.com",
             "20035678",
             "987654",
             "62300076587",
-            300000
+            2300000
         ),
     };
+
+
+    accounts[1].mutation.push(Mutation::Mutation(
+        Helper::convertStringToTimeT("10-07-2023"),
+        "moneyin", 200000, 0, "Farrel Rashend", "Reza Kecap Man", "Di Transfer"
+    ));
+    accounts[1].mutation.push(Mutation::Mutation(
+        Helper::convertStringToTimeT("11-07-2023"),
+        "moneyout", 0, 100000, "Reza Kecap Man", "-              ", "Tarik Tunai"
+    ));
 
     do {
         cout << "Selamat datang di Bank Amikom" << endl;
         cout << "=============================" << endl;
         cout << "Silahkan pilih aksi berikut :" << endl << endl;
         cout << "1. Login" << endl;
-        cout << "2. Register" << endl;
-        // cout << "3. Lupa Username/Password" << endl; Pending dulu ini wkwkwk
+        cout << "2. Register" << endl;        
         cout << "0. Exit" << endl;
 
         // User choose
@@ -86,10 +97,6 @@ int main() {
             cout << "Password : ";
             password = Helper::inputBullet();
 
-            // Variabel login ini buat memproses data tiap akun yang berhasil login
-            // Kalian bisa nambahin variabel-variabel baru di class Account sesuai kebutuhan
-            // dan menerapkannya di class lain
-            // Good Luck friends
             Account* login = Account::login(username, password, accounts);
 
             if (login != nullptr) {
@@ -122,7 +129,7 @@ int main() {
                     cin >> loggedUser.userChoosen;
 
                     cout << "\nTunggu sebentar...";
-                    this_thread::sleep_for(chrono::milliseconds(2000));                                        
+                    this_thread::sleep_for(chrono::milliseconds(1000));                                        
                     system("cls");
 
                     if (loggedUser.userChoosen == 0) {
@@ -131,25 +138,33 @@ int main() {
                     }
                     else if (loggedUser.userChoosen == 1) {
                         // Type here for Tarik Tunai   
-                        CashWithdrawal::process(*login);
+                        CashWithdrawal::process(*login);                       
                     }
                     else if (loggedUser.userChoosen == 2) {
-                        // Type here for Transfer
+                        // Type here for Transfer 
+                        Transfer::transferMenu(*login, accounts);
                     }
                     else if (loggedUser.userChoosen == 3) {
                         // Type here for Dompet Digital
+                        DigitalWallet digitalWallet;
+
+                        digitalWallet.topUpMenu(*login);
+                        double topUpAmount = digitalWallet.getTopUpAmount();
+                        login->money += topUpAmount;
+                        cout << "Top up berhasil!" << endl;
                     }
                     else if (loggedUser.userChoosen == 4) {
-                        // Type here for Pulsa/Data
+                        // Type here for Pulsa/Data                        
                     }
                     else if (loggedUser.userChoosen == 5) {
-                        // Type here for PLN
+                        // Type here for PLN       
+                        Electricity::print(*login);
                     }
                     else if (loggedUser.userChoosen == 6) {
                         // Type here for Mutasi Rekening
+                        Mutation::showMutation(login->mutation);                        
                     }
-                    else if (loggedUser.userChoosen == 7) {
-                        // Farrel OK
+                    else if (loggedUser.userChoosen == 7) {                        
                         BalanceCheck::print(*login);
                     }
                     else if (loggedUser.userChoosen == 8) {
@@ -285,8 +300,7 @@ int main() {
         } else {
             cout << "Pilih menu yang disediakan!" << endl;
         }
-        
-        // Refresh CMD with delay 3000 miliseconds        
+                
         this_thread::sleep_for(chrono::milliseconds(3000));
         system("cls");
     } while (user.userChoosen != 0);

@@ -42,6 +42,9 @@
     <ClCompile Include="Helper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Transfer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mutation.h">
@@ -51,9 +54,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CashWithdrawal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Transfer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CreditData.h">
@@ -69,6 +69,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Helper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transfer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

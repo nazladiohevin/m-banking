@@ -1,6 +1,7 @@
 #include "CashWithdrawal.h"
 #include "Account.h"
 #include "Helper.h"
+#include "Mutation.h"
 
 #include <iostream>
 #include <vector>
@@ -48,6 +49,15 @@ void CashWithdrawal::process(Account& account) {
 		// Program utama
 		if (isFinished) {
 			account.money = account.money - takeMoney;
+			
+			account.mutation.push(Mutation::addMutation(
+				"moneyout",
+				0,
+				takeMoney,
+				account.name.substr(0, 15),
+				"-              ",
+				"Tarik Tunai"
+			));
 		}
 		else {
 			system("pause");
