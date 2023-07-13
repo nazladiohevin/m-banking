@@ -17,6 +17,7 @@
 #include "Transfer.h"
 #include "DigitalWallet.h"
 #include "Electricity.h"
+#include "CreditData.h"
 
 
 using namespace std;
@@ -154,7 +155,8 @@ int main() {
                         cout << "Top up berhasil!" << endl;
                     }
                     else if (loggedUser.userChoosen == 4) {
-                        // Type here for Pulsa/Data                        
+                        // Type here for Pulsa/Data                
+                        CreditData::process(*login);
                     }
                     else if (loggedUser.userChoosen == 5) {
                         // Type here for PLN       

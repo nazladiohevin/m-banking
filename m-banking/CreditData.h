@@ -1,5 +1,8 @@
 #pragma once
-class CreditData
-{
+#include "Account.h"
+
+class CreditData {
+	public: 
+		static void process(Account& account);
 };
 
