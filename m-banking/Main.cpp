@@ -46,8 +46,8 @@ int main() {
             1500000
         ),
         Account::Account(
-            "Reza Kecap Manis",
-            "kecapmanis",
+            "Reza Kecap Pahit",
+            "rezamanis",
             "rezamanis@gmail.com",
             "20035678",
             "987654",
