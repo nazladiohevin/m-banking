@@ -1,0 +1,3 @@
+﻿  DigitalWallet.cpp
+C:\Users\asus\source\repos\m-banking\m-banking\DigitalWallet.cpp(18,12): warning C4101: 'nomormerchant': unreferenced local variable
+  m-banking.vcxproj -> C:\Users\asus\source\repos\m-banking\x64\Debug\m-banking.exe
